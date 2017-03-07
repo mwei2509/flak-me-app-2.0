@@ -1,0 +1,16 @@
+<div class="card">
+  <div class="card-block">
+    <div class="row">
+      <div class="col-md-1">
+        <%= gravatar_for message.user %>
+      </div>
+      <div class="col-md-11">
+        <p class="card-text">
+          <span class="text-muted"><%= link_to message.user.name, profile_path(message.user) %> at <%= message.timestamp %> says</span><br>
+          <%= message.body %>
+        </p>
+      </div>
+    </div>
+
+  </div>
+</div>

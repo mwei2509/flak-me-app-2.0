@@ -1,0 +1,29 @@
+<div class="jumbotron">
+  <h1>FLAKME DASHBOARD</h1>
+<p><span class="glyphicon glyphicon-heart"></span> Hi, <%= current_user.profile.user_name%> <span class="glyphicon glyphicon-heart"></span></p>
+<%= render partial: "profiles/edit_profile", locals: {user_profile: current_user.profile} %>
+</div>
+<div class="row">
+
+  <!-- current_user group -->
+  <div class="col-sm-4">
+    <h4>My groups</h4>
+    <ul>
+    <%= render partial: 'profiles/my_group', collection: current_user.get_groups %>
+    </ul>
+    <hr />
+    <h4>Banned from</h4>
+    <ul>
+    <%= render partial: 'profiles/my_group', collection: current_user.get_banned_groups %>
+    </ul>
+    <hr />
+    <h4>Join Groups</h4>
+    <ul>
+      <%= render partial: 'profiles/my_group', collection: current_user.not_in_groups %>
+    </ul>
+  </div>
+
+  <div class="col-sm-8">
+    <% #link_to "Conversations", conversations_path %>
+  </div>
+</div>

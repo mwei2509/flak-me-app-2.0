@@ -1,0 +1,19 @@
+<div class="jumbotron">
+  <h1><%= @user.profile.user_name.capitalize%>'s Profile</h1>
+  <p><%= @user.profile.full_name %>, <%= @user.profile.age %></p>
+  <p><%= @user.profile.bio %></p>
+</div>
+
+<div class="row">
+  <div class="col-sm-4">
+    <h4>My groups</h4>
+    <ul>
+    <%= render partial: 'profiles/my_group', collection: @user.get_groups %>
+    </ul>
+
+  </div>
+  <div class="col-sm-8">
+    <% #link_to "Conversations", conversations_path %>
+    <%= link_to "Slide in", slide_on_in_path(@user.id) %>
+  </div>
+</div>
