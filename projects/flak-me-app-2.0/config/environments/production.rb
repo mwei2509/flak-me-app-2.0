@@ -83,11 +83,28 @@ Rails.application.configure do
     config.logger = ActiveSupport::TaggedLogging.new(logger)
   end
 
+
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
 
-  config.action_cable.allowed_request_origins = ['https://sitepoint-actioncable.herokuapp.com',
-                                                 'http://sitepoint-actioncable.herokuapp.com']
+  #web socket
+  config.web_socket_server_url = "wss://flak-me-app.herokuapp.com/cable"
+  config.action_cable.allowed_request_origins = ['https://flak-me-app.herokuapp.com', 'http://flak-me-app.herokuapp.com']
 
-  config.action_cable.url = "wss://sitepoint-actioncable.herokuapp.com/cable"
+  #database
+  db = URI.parse(ENV['HEROKU_POSTGRESQL_COPPER_URL'] || 'postgres://localhost/mydb')
+
+  ActiveRecord::Base.establish_connection(
+      :adapter  => db.scheme == 'postgres' ? 'postgresql' : db.scheme,
+      :host     => db.host,
+      :username => db.user,
+      :password => db.password,
+      :database => db.path[1..-1],
+      :encoding => 'utf8'
+      )
+  # 
+  # config.action_cable.allowed_request_origins = ['https://sitepoint-actioncable.herokuapp.com',
+  #                                                'http://sitepoint-actioncable.herokuapp.com']
+  #
+  # config.action_cable.url = "wss://sitepoint-actioncable.herokuapp.com/cable"
 end

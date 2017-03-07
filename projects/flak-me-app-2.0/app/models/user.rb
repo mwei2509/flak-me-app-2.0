@@ -9,6 +9,12 @@ class User < ApplicationRecord
   has_many :messages, dependent: :destroy
 
   has_one :profile
+
+  delegate :user_name, to: :profile
+  delegate :bio, to: :profile
+  delegate :full_name, to: :profile
+  delegate :age, to: :profile
+
   before_create :build_default_profile
 
   def name
@@ -28,7 +34,11 @@ class User < ApplicationRecord
   end
 
   def not_in_groups
-    Group.where(private: false).where('id NOT IN (?)',self.group_ids)
+    if self.group_ids.empty?
+      Group.where(private: false)
+    else
+      Group.where(private: false).where('id NOT IN (?)',self.group_ids)
+    end
   end
 
 

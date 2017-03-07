@@ -1,6 +1,6 @@
 <div class="jumbotron">
   <h1>FLAKME DASHBOARD</h1>
-<p><span class="glyphicon glyphicon-heart"></span> Hi, <%= current_user.profile.user_name%> <span class="glyphicon glyphicon-heart"></span></p>
+<p><span class="glyphicon glyphicon-heart"></span> Hi, <%= current_user.user_name%> <span class="glyphicon glyphicon-heart"></span></p>
 <%= render partial: "profiles/edit_profile", locals: {user_profile: current_user.profile} %>
 </div>
 <div class="row">
