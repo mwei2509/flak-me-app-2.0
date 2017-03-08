@@ -13,13 +13,16 @@ class Slide < ApplicationRecord
     return {slider: sorted[0], slidee: sorted[1]}
   end
 
-  def self.get_replies(slider, slidee)
-    slide_id=Slide.find_by(sort_users(slider,slidee))
-    Message.joins(:user).where(group_id: group_id)
-  end
-
-  def self.get_slide(slider, slidee)
-    Slide.find_by(sort_users(slider,slidee))
+  # def self.get_replies(slider, slidee)
+  #   slide_id=Slide.find_by(sort_users(slider,slidee))
+  #   Message.joins(:user).where(group_id: group_id)
+  # end
+  #
+  # def self.get_slide(slider, slidee)
+  #   Slide.find_by(sort_users(slider,slidee))
+  # end
+  def self.find_slides(current_user)
+    slides=Slide.where('slider = ? OR slidee = ?',current_user, current_user)
   end
 
   def self.start_slide(slider, slidee, group)

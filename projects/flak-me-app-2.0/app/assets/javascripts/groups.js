@@ -1,5 +1,6 @@
 $(document).on('turbolinks:load', function() {
   submitNewMessage();
+  readMessage();
 });
 
 function submitNewMessage(){
@@ -9,5 +10,11 @@ function submitNewMessage(){
         $('#message_body').val(" ")
         return false;
      }
+  });
+}
+
+function readMessage(){
+  $('textarea#message_body').focus(function(){
+    
   });
 }

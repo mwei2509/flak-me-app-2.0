@@ -1,17 +1,24 @@
-<!-- chat window -->
-<div id="messages" data-group-id="<%= @group.id %>">
-  <%= render @group.messages %>
-</div>
+<div class="row">
+  <%= render partial:'slides/slides_panel', locals:{slides: @slides} %>
+  <div>
+    <div class="col-sm-8">
 
-<!-- chat form -->
-<%= form_for @message, url: '#' do |f| %>
-  <%= hidden_field_tag 'group_id', @group.id %>
-  <div class="form-group">
+    <!-- chat window -->
+    <div id="messages" data-group-id="<%= @group.id %>">
+    <%= render @group.messages %>
+    </div>
+
+    <!-- chat form -->
+    <%= form_for @message, url: '#' do |f| %>
+    <%= hidden_field_tag 'group_id', @group.id %>
+    <div class="form-group">
     <%= f.label :body %>
     <%= f.text_area :body, class: 'form-control' %>
     <small class="text-muted">From 2 to 1000 characters</small>
-  </div>
+    </div>
 
-  <%= f.submit "Post", class: 'btn btn-primary btn-lg', style: "display: none" %>
-<% end %>
+    <%= f.submit "Post", class: 'btn btn-primary btn-lg', style: "display: none" %>
+    <% end %>
+    </div>
+  </div>
 </div>

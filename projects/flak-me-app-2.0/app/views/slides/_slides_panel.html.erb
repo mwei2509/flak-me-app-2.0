@@ -1,0 +1,16 @@
+<div class="col-sm-4 profile-left">
+  <h2>Slides</h2>
+<% if !slides.empty? %>
+<ul>
+  <% slides.each do |slide| %>
+    <li><% if slide.user_2==current_user %>
+    <%= link_to slide.user_1.user_name, slide_on_in_path(slide.user_1) %>
+    <% else %>
+    <%= link_to slide.user_2.user_name, slide_on_in_path(slide.user_2) %>
+    <% end %></li>
+  <% end %>
+</ul>
+<% else %>
+Nothing to see here
+<% end %>
+</div>

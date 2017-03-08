@@ -6,6 +6,7 @@ class ProfilesController < ApplicationController
 
   def dashboard
     @profile=Profile.find_by(user_id: current_user.id)
+    @slides=Slide.find_slides(current_user.id)
   end
 
   def update
