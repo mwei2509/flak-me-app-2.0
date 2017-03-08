@@ -10,5 +10,6 @@ class GroupsChannel < ApplicationCable::Channel
 
   def send_message(data)
     current_user.messages.create!(body: data['message'], group_id: data['group_id'])
+    # current_user.messages.new(body: data['message'], group_id: data['group_id'])
   end
 end

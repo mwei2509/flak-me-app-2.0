@@ -25,7 +25,7 @@ class GroupsController < ApplicationController
   def show
     @group = Group.includes(:messages).find_by(slug: params[:slug])
     @message = Message.new
-    @user=User.find(current_user.id) #sets default to "member"
+    @user=User.find(current_user.id)
   end
 
   def destroy
