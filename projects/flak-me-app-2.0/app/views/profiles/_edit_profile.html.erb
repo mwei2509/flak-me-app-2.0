@@ -1,11 +1,13 @@
+<div class="profile-form-wrapper">
 <%= form_for user_profile, method: :patch do |f| %>
 <%= f.label :user_name %>
-<%= f.text_field :user_name %>
+<%= f.text_field :user_name, class: "form-control profile-form" %>
 <%= f.label :full_name %>
-<%= f.text_field :full_name %>
+<%= f.text_field :full_name, class: "form-control profile-form" %>
 <%= f.label :age %>
-<%= f.number_field :age %>
+<%= f.number_field :age, class: "form-control profile-form" %>
 <%= f.label :bio %>
-<%= f.text_area :bio %>
-<%= f.submit %>
+<%= f.text_area :bio, class: "form-control profile-form" %>
+<%= f.submit "Update Profile", class: "btn theme-btn-1 update-prof-btn" %>
 <% end %>
+</div>

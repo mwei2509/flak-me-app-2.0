@@ -1,12 +1,21 @@
-<div class="jumbotron">
-  <h1>FLAKME DASHBOARD</h1>
-<p><span class="glyphicon glyphicon-heart"></span> Hi, <%= current_user.user_name%> <span class="glyphicon glyphicon-heart"></span></p>
-<%= render partial: "profiles/edit_profile", locals: {user_profile: current_user.profile} %>
+<div class="row dash-head-wrap">
+  <div class="col-md-12 dashboard-head">
+    <h1><span class="dash-avatar"><%= gravatar_for current_user %> </span>FLAKME DASHBOARD</h1>
+    <p>
+      <span class="glyphicon glyphicon-heart"></span> Hi, <%= current_user.user_name%> 
+      <span class="glyphicon glyphicon-heart"></span>
+    </p>
+  <% #render partial: "profiles/edit_profile", locals: {user_profile: current_user.profile} %>
+    <div style="float:right;">
+      <h4><strong><%= link_to "Edit Your Profile", "#myModal", 'data-toggle' => 'modal', class: "btn theme-btn-1" %></strong></h4>
+      <%= render partial: 'profiles/show_modal' %>
+    </div>
+  </div>
 </div>
-<div class="row">
+<div class="row profile-main">
 
   <!-- current_user group -->
-  <div class="col-sm-4">
+  <div class="col-sm-4 profile-left">
     <h4>My groups</h4>
     <ul>
     <%= render partial: 'profiles/my_group', collection: current_user.get_groups %>

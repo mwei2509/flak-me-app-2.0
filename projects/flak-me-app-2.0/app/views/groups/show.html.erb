@@ -1,6 +1,6 @@
 <div class="row">
 <% if @role.downcase != "banned" && !@role.empty? && @group.active %>
-  <div class="col-sm-4">
+  <div class="col-sm-4 profile-left">
 
     <!-- member panel div -->
     <%= render layout: 'layouts/panel', locals:{title: "Member Panel"} do%>
@@ -18,30 +18,31 @@
     <% end %>
 
   </div>
+ <div> 
   <div class="col-sm-8">
     <h1><%= @group.title %></h1>
 
-<!-- errors -->
+  <!-- errors -->
 
-<!-- chat window -->
-<div id="messages" data-group-id="<%= @group.id %>">
-  <%= render @group.messages %>
-</div>
-
-<!-- chat form -->
-<%= form_for @message, url: '#' do |f| %>
-  <%= hidden_field_tag 'group_id', @group.id %>
-  <div class="form-group">
-    <%= f.label :body %>
-    <%= f.text_area :body, class: 'form-control' %>
-    <small class="text-muted">From 2 to 1000 characters</small>
+  <!-- chat window -->
+  <div id="messages"  data-group-id="<%= @group.id %>">
+    <%= render @group.messages %>
   </div>
 
-  <%= f.submit "Post", class: 'btn btn-primary btn-lg', style: "display: none" %>
-<% end %>
-</div>
-<% end %>
+  <!-- chat form -->
+  <%= form_for @message, url: '#' do |f| %>
+    <%= hidden_field_tag 'group_id', @group.id %>
+    <div class="form-group">
+      <%= f.label :body %>
+      <%= f.text_area :body, class: 'form-control' %>
+      <small class="text-muted">From 2 to 1000 characters</small>
+    </div>
 
+    <%= f.submit "Post", class: 'btn theme-btn-1 btn-lg', style: "display: none" %>
+  <% end %>
+  </div>
+  <% end %>
+</div>
 <!-- admin panel div -->
 <% if @role.downcase=="admin" %>
   <%= render layout: 'layouts/panel', locals:{title: "Admin Panel"} do %>

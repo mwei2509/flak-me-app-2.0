@@ -1,0 +1,13 @@
+<div class="modal fade" id="myModal" tabindex="-1" role="document" aria-labelledby="myModalLabel">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				<h4 class="modal-title" id="myModalLabel"><span class="dash-avatar"><%= gravatar_for current_user %> </span></h4>
+			</div>
+			<div class="modal-body clearfix">
+				<%= render partial: "profiles/edit_profile", locals: {user_profile: current_user.profile} %>
+			</div>
+		</div>
+	</div>
+</div>

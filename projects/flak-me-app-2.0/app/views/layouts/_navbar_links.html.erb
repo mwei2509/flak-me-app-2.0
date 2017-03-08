@@ -3,9 +3,14 @@
     <li><%= link_to current_user.name, profile_path(current_user) %></li>
     <li><%= link_to "groups", groups_path %></li>
     <li><%= link_to "new group", new_group_path%></li>
-    <li class="nav-item"><span class="text-muted">Logged in as <strong><%= current_user.name %></strong></span></li>
-    <li><%= link_to 'Log out', destroy_user_session_path, method: :delete, class: 'nav-link' %></li>
+  </ul>
+  <ul class="menu-right">
+
+    <li class="logout-btn-box"><%= link_to 'Log out', destroy_user_session_path, method: :delete, class: 'nav-link logout-btn btn theme-btn-1' %></li>
+  </ul>
   <% else %>
+  </ul>
+  <ul class="menu-right">
     <li><%= link_to "Sign Up", new_user_registration_path %></li>
     <li><%= link_to "Log In", new_user_session_path %></li>
   <% end %>

@@ -1,0 +1,163 @@
+@import "bootstrap-sprockets";
+@import "bootstrap";
+@import 'global';
+
+.navbar{
+border-radius:0 !important; 
+background-color:rgba(255,255,255,1);
+}
+
+.top-bar, .left, .right{
+	background-color:white !important;
+}
+
+.menu-right{
+	float:right;
+	list-style-type:none;
+	text-decoration:none;
+	display:inline-block;
+	li{
+		display:inline;
+	}
+}
+html{
+	height:100%;
+}
+
+body{
+	height:100%;
+	background-size:100%;
+	font-family:"Montserrat";
+	background:no-repeat;
+	background:cover;
+  	background: #EFA39C; 
+  	/* For browsers that do not support gradients */
+  	background: -webkit-linear-gradient(left top, #E67B95, #EFA39C, #F7BEA3 ); /* For Safari 5.1 to 6.0 */
+  	background: -o-linear-gradient(bottom right, #E67B95, #EFA39C, #F7BEA3 ); /* For Opera 11.1 to 12.0 */
+ 	background: -moz-linear-gradient(bottom right, #E67B95, #EFA39C, #F7BEA3 ); /* For Firefox 3.6 to 15 */
+ 	background: linear-gradient(to bottom right, #E67B95, #EFA39C, #F7BEA3); /* Standard syntax */
+}
+
+h1{
+	font-size:26px !important;	
+}
+
+.dashboard-head, .profile-left{
+	background-color:white;
+	border-color:#EEEEEE;
+	border-style:solid;
+	border-width:1px;
+	border-radius:4px;
+}
+
+.profile-main{
+	margin-bottom:400px;
+}
+
+.profile-form-wrapper{
+	padding:5%;
+}
+
+.update-prof-btn{
+	margin-top:20px;
+}
+
+.logout-btn{
+	margin-top:5px;
+}
+
+.logout-btn-box{
+	padding-top:5px;
+	margin-top:50px !important;
+
+}
+.dash-avatar{
+	float:left;
+	padding:2px;
+	padding-right:10px;
+	border-radius:50%
+}
+
+.theme-btn-1{
+	border-radius:1px !important;
+	box-shadow:1px,1px,1px #000;
+	background-color:#70C8BD;
+	color:white !important;
+	border-color:#70C8BD !important;
+	border-style:solid;
+	border-width:1px;
+	transition: ease-in-out 0.5s;	
+}
+
+.theme-btn-1:hover{
+	border-radius:1px !important;
+	color:white;
+	background-color:#EA8C98 !important;
+	border-color:#EA8C98 !important;
+	border-style:solid;
+	border-width:1px;
+	transition: ease-in-out 0.5s;	
+}
+
+.modal-content{
+	border-radius:10px !important;
+}
+
+.modal-header{
+	border-top-left-radius:8px !important;
+	border-top-right-radius:8px !important;
+	color:white;
+	background-color:#EFD48A !important;
+	border-color:#EFD48A !important;	
+}
+
+
+.close span{
+	opacity:1 !important;
+	color:white !important;
+}
+
+.dash-avatar img{
+	border-radius:100%;
+}
+
+.dash-head-wrap{
+
+}
+
+.reset-btn{
+	margin-top:10px;
+}
+
+@media screen and (min-width:780px){
+	/* add style for laptops and desktop here */	
+}
+
+@media screen and (max-width:779px){
+	/* add style for tablets and mobile */
+}
+
+.btn-main{
+	
+}
+
+.btn-secondary{
+	
+}
+
+.left{
+	
+}
+
+.right{
+	
+}
+
+.chat-window{
+	background-color:white;
+}
+
+.profile-left{
+	margin-top:20px;
+}
+
