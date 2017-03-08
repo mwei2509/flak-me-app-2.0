@@ -4,7 +4,7 @@ class Group < ApplicationRecord
   has_many :messages, dependent: :destroy
   has_one :slide
 
-  validates :title, presence: true, uniqueness: true, case_sensitive: false
+  validates :title, presence: true, uniqueness: true, case_sensitive: false, length:{in: 3..30}
   validates :title, format: { without: /\A[@]/, message: "reserved character" }, if: "!private" #no @ if not a DM
   before_validation :sanitize, :slugify
 
