@@ -1,0 +1,21 @@
+<div class="row">
+  <%= render partial:'slides/slides_panel', locals:{slides: @slides} %>
+  <div>
+    <div class="col-sm-8">
+
+    <!-- chat window -->
+    <div id="messages" data-group-id="<%= @group.id %>">
+    <% #render @group.messages %>
+    </div>
+
+    <!-- chat form -->
+
+    <%= form_for @flash, url: flash_path do |f| %>
+    <%= hidden_field_tag 'group_id', @group.id %>
+    <div class="form-group">
+    <%= f.label :body %>
+    <%= f.text_area :body, class: 'form-control' %>
+    <% end %>
+    </div>
+  </div>
+</div>
