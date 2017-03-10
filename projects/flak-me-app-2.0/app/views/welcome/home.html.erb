@@ -1,0 +1,26 @@
+<div class="content-container">
+  <video autoplay loop id="video-background" poster="earth_night_rotate_1080.mov" muted>
+
+    <source src="../earth_night_rotate_1080.mov" type="video/mp4"> </video> </div>
+
+
+
+      <div style="float:right;">
+        <h4><strong><%= link_to "Log In", "#myModal", 'data-toggle' => 'modal', class: "btn theme-btn-1" %></strong></h4>
+        <div class="modal fade" id="myModal" tabindex="-1" role="document" aria-labelledby="myModalLabel">
+        	<div class="modal-dialog" role="document">
+        		<div class="modal-content">
+        			<div class="modal-header">
+        				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        				<h4 class="modal-title" id="myModalLabel"><span class="dash-avatar">log in </span></h4>
+        			</div>
+        			<div class="modal-body clearfix">
+        				<%= render partial: '/devise/sessions/form', locals: {resource: resource} %>
+        			</div>
+        		</div>
+        	</div>
+        </div>
+      </div>
+
+
+<%= render @groups %>

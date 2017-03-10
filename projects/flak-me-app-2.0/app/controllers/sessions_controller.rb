@@ -1,4 +1,5 @@
 class SessionsController < Devise::SessionsController
+layout 'welcome', :only => [:new]
 
 def new
   @groups=Group.where(private: false)
