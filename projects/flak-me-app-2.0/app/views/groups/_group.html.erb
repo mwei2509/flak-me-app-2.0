@@ -1,6 +1,6 @@
 <div class="col-md-4">
-  <div class="group-display">
-
+  <div style="background-image: url(<%= group.group_img.url %>);background-repeat:none;background-size:100%;" class="group-display">
+   <% #image_tag group.group_img.url %>
     <%= link_to "Enter #{group.title}", group_path(group) %>
   </div>
 </div>

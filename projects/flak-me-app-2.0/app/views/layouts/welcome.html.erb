@@ -11,12 +11,19 @@
   <%= favicon_link_tag 'favicon.ico' %>
   <script>
   $(document).ready(function(){
-    $('.main-login').fadeIn('fast');
+    // $('.main-login').fadeIn('fast');
     $("#clicky").click(function(){
-    $('.main-login').fadeOut('fast');
-    $('.main-signup').fadeIn('fast');
-      // $('.main-login').removeClass('active');
-      // $('.main-signup').addClass('active');
+    	var $this = $(this);
+       $('.main-login').toggleClass('active');
+       $('.main-signup').toggleClass('active');
+       
+        if ($('.main-login').hasClass('active')) {
+       		$("#clicky").text("Create an Account");
+        } 
+       	else {
+       		$("#clicky").text("Have an account? Log in");
+       	}
+      
     });
   });
   </script>

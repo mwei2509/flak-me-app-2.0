@@ -10,15 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170307054901) do
+ActiveRecord::Schema.define(version: 20170310030532) do
 
   create_table "groups", force: :cascade do |t|
     t.string   "title"
     t.string   "slug"
-    t.boolean  "active",     default: true
-    t.datetime "created_at",                 null: false
-    t.datetime "updated_at",                 null: false
-    t.boolean  "private",    default: false
+    t.boolean  "active",                 default: true
+    t.datetime "created_at",                             null: false
+    t.datetime "updated_at",                             null: false
+    t.boolean  "private",                default: false
+    t.string   "group_img_file_name"
+    t.string   "group_img_content_type"
+    t.integer  "group_img_file_size"
+    t.datetime "group_img_updated_at"
   end
 
   create_table "messages", force: :cascade do |t|

@@ -3,9 +3,15 @@ class Group < ApplicationRecord
   has_many :users, through: :roles
   has_many :messages, dependent: :destroy
   has_one :slide
-
+  # attr_accessor :group_img_file_name
+  # attr_accessor :group_img_content_type
+  has_attached_file :image
   validates :title, presence: true, uniqueness: true, case_sensitive: false, length:{in: 3..30}
   validates :title, format: { without: /\A[@]/, message: "reserved character" }, if: "!private" #no @ if not a DM
+  
+  has_attached_file :group_img, styles: { medium: "300x300>", thumb: "100x100>" }, default_url: "ghost.png"
+  validates_attachment_content_type :group_img, content_type: /\Aimage\/.*\z/ 
+
   before_validation :sanitize, :slugify
 
   def to_param

@@ -1,9 +1,10 @@
 <h1>Add group</h1>
 
-<%= form_for @group do |f| %>
+<%= form_for @group, :html => { :multipart => true } do |f| %>
   <div class="form-group">
     <%= f.label :title %>
     <%= f.text_field :title, autofocus: true, class: 'form-control' %>
+    <%= f.file_field :group_img, as: :file %>
   </div>
 
   <%= f.submit "Add!", class: 'btn btn-primary' %>

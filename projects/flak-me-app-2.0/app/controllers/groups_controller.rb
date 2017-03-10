@@ -12,6 +12,7 @@ class GroupsController < ApplicationController
 
   def create
     @group = Group.new(group_params)
+    
     if @group.save
       #link to creator and make them admin
       @group.set_admin(current_user)
@@ -74,6 +75,6 @@ class GroupsController < ApplicationController
   end
 
   def group_params
-    params.require(:group).permit(:title, :modify, :user_id)
+    params.require(:group).permit(:title, :modify, :user_id, :group_img)
   end
 end
