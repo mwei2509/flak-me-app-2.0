@@ -45,11 +45,16 @@ h1{
 }
 
 .dashboard-head, .profile-left{
+    display:table;
+    box-sizing: border-box;
 	background-color:white;
 	border-color:#EEEEEE;
 	border-style:solid;
-	border-width:1px;
-	border-radius:4px;
+	border-width:2px;
+	border-radius:1px;
+	margin-top:0;
+	height:625px !important;
+	border-color:#E3E3E3 !important;	
 }
 
 .profile-main{
@@ -160,7 +165,7 @@ h1{
 }
 
 .profile-left{
-	margin-top:20px;
+	margin-top:10px;
 }
 
 #video-background {
@@ -189,9 +194,12 @@ h1{
 .group-display{
 	background-color: #fff;
 	padding: 5px;
+	background-repeat:no-repeat;
+	background-size:cover;	
 	// float: left;
 	opacity:0.7;
-	height: 200px;
+	min-height:250px;
+	height:100% !important;
 	margin: 5px;
 	margin-bottom:20px;
 	transition: ease-in-out 0.4s;
@@ -202,6 +210,7 @@ transition: ease-in-out 0.4s;
 }
 
 textarea{
+	height:40px !important;
 	resize:none !important;
 }
 
