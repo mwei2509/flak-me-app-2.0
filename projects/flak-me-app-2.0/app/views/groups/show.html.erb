@@ -1,6 +1,6 @@
-<div class="row">
+<div class="row" style="background-color:white;border-radius:2px !important;">
 <% if @role.downcase != "banned" && !@role.empty? && @group.active %>
-  <div class="col-sm-4 profile-left">
+  <div class="col-sm-3 profile-left" style="background-color:white; border-radius:2px;margin-top:0;padding-top:0;border-color:#E3E3E3 !important;">
 
     <!-- member panel div -->
     <%= render layout: 'layouts/panel', locals:{title: "Member Panel"} do%>
@@ -16,16 +16,14 @@
       <%= "<h4>Banned</h4>".html_safe if !@group.get_banned.empty? %>
       <%= render partial: 'group_user', collection: @group.get_banned, locals:{status: "banned"} %>
     <% end %>
-
   </div>
- <div> 
-  <div class="col-sm-8">
-    <h1><%= @group.title %></h1>
-
+ <div style="background-color:#F5F5F5 !important;border-radius:4px;"> 
+    <div style="padding-top:0;margin-top:0;text-align:center;background-color:white;border-style:solid;border-color:#E3E3E3 !important;border-width:1px;"><h1><%= @group.title %></h1></div>
+  <div class="col-sm-9" style="background-color:#F5F5F5 !important";>
   <!-- errors -->
 
   <!-- chat window -->
-  <div id="messages"  data-group-id="<%= @group.id %>">
+  <div id="messages" style="margin:auto; width:90%;"  data-group-id="<%= @group.id %>">
     <%= render @group.messages %>
   </div>
 
