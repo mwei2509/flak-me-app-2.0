@@ -17,8 +17,33 @@
       <%= render partial: 'group_user', collection: @group.get_banned, locals:{status: "banned"} %>
     <% end %>
 
+    <!-- events form -->
+    <div class="modal fade" id="myModal" tabindex="-1" role="document" aria-labelledby="myModalLabel">
+    	<div class="modal-dialog" role="document">
+    		<div class="modal-content">
+    			<div class="modal-header">
+    				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+    			</div>
+    			<div class="modal-body clearfix">
+    				<%= render partial: 'events/form', locals: {group: @group, event: @event} %>
+    			</div>
+    		</div>
+    	</div>
+    </div>
+    <!-- end events -->
+
+    <!-- events -->
+    <div>
+      <h4><strong><%= link_to "Add Event", "#myModal", 'data-toggle' => 'modal', class: "btn theme-btn-1" %></strong></h4>
+      <% if @events %>
+        <%= render layout: 'layouts/panel', locals: {title: "Group Events"} do %>
+          <%= render partial: 'events/event', collection: @events, locals: {group: @group} %>
+        <% end %>
+      <% end %>
+    </div>
+
   </div>
- <div> 
+ <div>
   <div class="col-sm-8">
     <h1><%= @group.title %></h1>
 
@@ -51,6 +76,7 @@
     <%= link_to "Delete Group", @group, method: :delete, data: { confirm: "Really?"}%>
   <% end %>
 <% end %>
+
 </div>
 
 
