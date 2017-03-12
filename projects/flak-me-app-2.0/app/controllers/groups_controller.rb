@@ -12,7 +12,7 @@ class GroupsController < ApplicationController
 
   def create
     @group = Group.new(group_params)
-    
+
     if @group.save
       #link to creator and make them admin
       @group.set_admin(current_user)
@@ -27,6 +27,8 @@ class GroupsController < ApplicationController
     @group = Group.includes(:messages).find_by(slug: params[:slug])
     @message = Message.new
     @user=User.find(current_user.id)
+    @event=Event.new
+    @events=Event.where(group: @group)
   end
 
   def destroy

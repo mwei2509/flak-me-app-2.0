@@ -1,0 +1,25 @@
+<div style="margin: 5px; background-color: #fff;">
+  <%= link_to event.name, "#event#{event.id}", 'data-toggle' => 'modal'%>
+
+</div>
+<div class="modal fade" id="event<%= event.id %>" tabindex="-1" role="document" aria-labelledby="myModalLabel">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				<h4 class="modal-title" id="myModalLabel"><span class="dash-avatar"><%= event.name %> </span></h4>
+			</div>
+			<div class="modal-body clearfix">
+        <strong>Start:</strong> <%= event.event_start %><br />
+        <strong>End:</strong> <%= event.event_end %><br />
+        <p><%= event.description %></p>
+        <%= link_to "RSVP", group_rsvp_path(group, event) %>
+        <% if event.get_participants %>
+          <% event.get_participants.each do |participant| %>
+            <li><%= participant.user.email %></li>
+          <% end %>
+        <% end %>
+			</div>
+		</div>
+	</div>
+</div>
