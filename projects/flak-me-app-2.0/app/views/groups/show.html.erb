@@ -1,78 +1,103 @@
-<div class="row" style="background-color:white;border-radius:2px !important;">
-<% if @role.downcase != "banned" && !@role.empty? && @group.active %>
-  <div class="col-sm-3 profile-left" style="background-color:white; border-radius:2px;margin-top:0;padding-top:0;border-color:#E3E3E3 !important;">
-
-    <!-- member panel div -->
-    <%= render layout: 'layouts/panel', locals:{title: "Member Panel"} do%>
-      <%= link_to "Leave Group", modify_group_path(@group, a: "leave") %>
-    <% end %>
-
-    <!-- group members div -->
-    <%= render layout: 'layouts/panel', locals:{title: "Group Members"} do %>
-      <h4>Admin</h4>
-      <%= render partial: 'group_user', collection: @group.get_admin, locals:{status: "admin"} %>
-      <%= "<h4>Members</h4>".html_safe if @group.get_members %>
-      <%= render partial: 'group_user', collection: @group.get_members, locals:{status: "member"} %>
-      <%= "<h4>Banned</h4>".html_safe if !@group.get_banned.empty? %>
-      <%= render partial: 'group_user', collection: @group.get_banned, locals:{status: "banned"} %>
-    <% end %>
-
+<div class="slide-groups" style="overflow-x:scroll;width:100%;">
+  <div style="background-color:black;position:relative;overflow-x:scroll;width:<%= current_user.get_groups.count*230%>px;white-space:nowrap;">
+      <%= render partial: 'groups/group_hors', collection: current_user.get_groups %>
   </div>
- <div style="background-color:#F5F5F5 !important;border-radius:4px;"> 
-    <div style="padding-top:0;margin-top:0;text-align:center;background-color:white;border-style:solid;border-color:#E3E3E3 !important;border-width:1px;"><h1><%= @group.title %></h1></div>
-  <div class="col-sm-9" style="background-color:#F5F5F5 !important";>
+</div>
 
-    <!-- events form -->
-    <div class="modal fade" id="myModal" tabindex="-1" role="document" aria-labelledby="myModalLabel">
-    	<div class="modal-dialog" role="document">
-    		<div class="modal-content">
-    			<div class="modal-header">
-    				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-    			</div>
-    			<div class="modal-body clearfix">
-    				<%= render partial: 'events/form', locals: {group: @group, event: @event} %>
-    			</div>
-    		</div>
-    	</div>
-    </div>
-    <!-- end events -->
+<script>
+  $(document).ready(function(){
 
-    <!-- events -->
-    <div>
-      <h4><strong><%= link_to "Add Event", "#myModal", 'data-toggle' => 'modal', class: "btn theme-btn-1" %></strong></h4>
-      <% if @events %>
-        <%= render layout: 'layouts/panel', locals: {title: "Group Events"} do %>
-          <%= render partial: 'events/event', collection: @events, locals: {group: @group} %>
+    $('#groups_btn').click(function(){
+        $(".slide-groups").slideToggle();
+    });
+  
+    $('textarea#message_body').focus(function(){
+        $(".slide-groups").hide();
+    }); 
+
+  });
+</script>
+
+<div class="row" style="background-color:white;border-radius:2px !important;padding-left:10px;padding-right:10px;">
+  <% if @role.downcase != "banned" && !@role.empty? && @group.active %>
+    
+    <div class="col-sm-3 profile-left" style="background-color:white; border-radius:2px;margin-top:0;padding-top:0;border-color:#E3E3E3 !important;">
+
+        <!-- member panel div -->
+        <%= render layout: 'layouts/panel', locals:{title: "Member Panel"} do %>
+          <%= link_to "Leave Group", modify_group_path(@group, a: "leave") %>
         <% end %>
+
+      <!-- group members div -->
+      <%= render layout: 'layouts/panel', locals:{title: "Group Members"} do %>
+        <h4>Admin</h4>
+        <%= render partial: 'group_user', collection: @group.get_admin, locals:{status: "admin"} %>
+        <%= "<h4>Members</h4>".html_safe if @group.get_members %>
+        <%= render partial: 'group_user', collection: @group.get_members, locals:{status: "member"} %>
+        <%= "<h4>Banned</h4>".html_safe if !@group.get_banned.empty? %>
+        <%= render partial: 'group_user', collection: @group.get_banned, locals:{status: "banned"} %>
       <% end %>
+    
+      <!-- events form -->
+      <div class="modal fade" id="myModal" tabindex="-1" role="document" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            </div>
+            <div class="modal-body clearfix">
+              <%= render partial: 'events/form', locals: {group: @group, event: @event} %>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- end events -->
+
+      <!-- events -->
+      <div>
+        <h4><strong><%= link_to "Add Event", "#myModal", 'data-toggle' => 'modal', class: "btn theme-btn-1" %></strong></h4>
+        <% if @events %>
+          <%= render layout: 'layouts/panel', locals: {title: "Group Events"} do %>
+            <%= render partial: 'events/event', collection: @events, locals: {group: @group} %>
+          <% end %>
+        <% end %>
+      </div>
+
     </div>
+   
+      <!-- End Sidebar -->
+    <div style="background-color:#F5F5F5 !important;border-radius:4px;"> 
+      
+      <div style="padding-top:0;margin-top:0;text-align:center;background-color:white;border-style:solid;border-color:#E3E3E3 !important;border-width:1px;">
+          <div>
+            <span style="font-size:40px;padding:10px;"><%= @group.title %></span>
+            <span style="float:right; padding:15px;"><button class="btn btn-primary" id="groups_btn">Groups</button></span></div>
+      </div>
+      
+      <div class="col-sm-9">
+        <!-- errors -->
+        <!-- chat window -->
+        
+        <div id="messages" style="margin:auto; width:90%;"  data-group-id="<%= @group.id %>">
+          <%= render @group.messages %>
+        </div>
 
-  </div>
- <div>
-  <div class="col-sm-8">
-    <h1><%= @group.title %></h1>
+        <!-- chat form -->
+        <%= form_for @message, url: '#' do |f| %>
+          <%= hidden_field_tag 'group_id', @group.id %>
+          <div class="form-group">
+            <%= f.label :body %>
+            <%= f.text_area :body, class: 'form-control' %>
+            <small class="text-muted">From 2 to 1000 characters</small>
+          </div>
 
-  <!-- errors -->
-
-  <!-- chat window -->
-  <div id="messages" style="margin:auto; width:90%;"  data-group-id="<%= @group.id %>">
-    <%= render @group.messages %>
-  </div>
-
-  <!-- chat form -->
-  <%= form_for @message, url: '#' do |f| %>
-    <%= hidden_field_tag 'group_id', @group.id %>
-    <div class="form-group">
-      <%= f.label :body %>
-      <%= f.text_area :body, class: 'form-control' %>
-      <small class="text-muted">From 2 to 1000 characters</small>
+          <%= f.submit "Post", class: 'btn theme-btn-1 btn-lg', style: "display: none" %>
+        <% end %>
+      </div>
     </div>
-
-    <%= f.submit "Post", class: 'btn theme-btn-1 btn-lg', style: "display: none" %>
-  <% end %>
-  </div>
   <% end %>
 </div>
+
 <!-- admin panel div -->
 <% if @role.downcase=="admin" %>
   <%= render layout: 'layouts/panel', locals:{title: "Admin Panel"} do %>
@@ -82,9 +107,6 @@
   <% end %>
 <% end %>
 
-</div>
-
-
 <% if !@group.active %>
   This group has been de-activated
   <% elsif @role.empty? %>
@@ -92,5 +114,4 @@
   <% elsif @role.downcase=="banned" %>
   You have been banned from this group.
 <% end %>
-<hr />
-  Please contact <%= link_to @group.get_admin[0].email, profile_path(@group.get_admin[0]) %> for help
+
