@@ -1,0 +1,21 @@
+<script>
+if (document.title.includes("(")){
+
+}else{
+  count = 0;
+}
+
+var title="Flak.me"
+// var title = document.title;
+function changeTitle() {
+    count++;
+    var newTitle = '(' + count +') ' + title;
+    document.title = newTitle;
+}
+
+changeTitle();
+$(window).focus(function(){
+  document.title=title
+});
+
+</script>

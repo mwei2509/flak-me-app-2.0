@@ -2,7 +2,14 @@ $(document).on('turbolinks:load', function() {
   submitNewMessage();
   submitNewFlash();
   readMessage();
+  // notificationsExists();
 });
+
+// function notificationsExists(){
+//   if ($('#notifications').length > 0){
+//     console.log("poop");
+//   }
+// }
 
 function submitNewMessage(){
   $('textarea#message_body').keydown(function(event) {
