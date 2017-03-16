@@ -13,7 +13,9 @@ function changeTitle() {
     document.title = newTitle;
 }
 
-changeTitle();
+if (document.hidden){
+  changeTitle();
+}
 $(window).focus(function(){
   document.title=title
 });
