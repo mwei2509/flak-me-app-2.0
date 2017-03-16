@@ -10,17 +10,17 @@
     $('#groups_btn').click(function(){
         $(".slide-groups").slideToggle();
     });
-  
+
     $('textarea#message_body').focus(function(){
         $(".slide-groups").hide();
-    }); 
+    });
 
   });
 </script>
 
 <div class="row" style="background-color:white;border-radius:2px !important;padding-left:10px;padding-right:10px;">
   <% if @role.downcase != "banned" && !@role.empty? && @group.active %>
-    
+
     <div class="col-sm-3 profile-left" style="background-color:white; border-radius:2px;margin-top:0;padding-top:0;border-color:#E3E3E3 !important;">
 
         <!-- member panel div -->
@@ -37,7 +37,7 @@
         <%= "<h4>Banned</h4>".html_safe if !@group.get_banned.empty? %>
         <%= render partial: 'group_user', collection: @group.get_banned, locals:{status: "banned"} %>
       <% end %>
-    
+
       <!-- events form -->
       <div class="modal fade" id="myModal" tabindex="-1" role="document" aria-labelledby="myModalLabel">
         <div class="modal-dialog" role="document">
@@ -53,6 +53,28 @@
       </div>
       <!-- end events -->
 
+
+
+      <!-- item - seller_id, group_id, price, sold (default false)
+      - belongs to user, group, dependent :destroy
+      - has many bids, dependent :destroy
+      - has one transaction, dependent :destroy
+
+      bid/purchase request - bidder_id, item_id, amount, comment, status (default "open")
+      - belongs to bidder
+      - belongs to item
+      - delegates seller to item
+      - has one transaction, dependent :destroy
+
+      seller chooses bid -> creates transaction, bids status="on hold"
+
+      transaction - bid_id, item_id, seller_approved, buyer_approved, released (default false)
+      - belongs to bid, belongs to item
+
+      seller approves transaction, buyer approves transaction, released -> true
+      bids - status="closed"
+      item - sold=true -->
+
       <!-- events -->
       <div>
         <h4><strong><%= link_to "Add Event", "#myModal", 'data-toggle' => 'modal', class: "btn theme-btn-1" %></strong></h4>
@@ -64,20 +86,20 @@
       </div>
 
     </div>
-   
+
       <!-- End Sidebar -->
-    <div style="background-color:#F5F5F5 !important;border-radius:4px;"> 
-      
+    <div style="background-color:#F5F5F5 !important;border-radius:4px;">
+
       <div style="padding-top:0;margin-top:0;text-align:center;background-color:white;border-style:solid;border-color:#E3E3E3 !important;border-width:1px;">
           <div>
             <span style="font-size:40px;padding:10px;"><%= @group.title %></span>
             <span style="float:right; padding:15px;"><button class="btn btn-primary" id="groups_btn">Groups</button></span></div>
       </div>
-      
+
       <div class="col-sm-9">
         <!-- errors -->
         <!-- chat window -->
-        
+
         <div id="messages" style="margin:auto; width:90%;"  data-group-id="<%= @group.id %>">
           <%= render @group.messages %>
         </div>
@@ -114,4 +136,3 @@
   <% elsif @role.downcase=="banned" %>
   You have been banned from this group.
 <% end %>
-
