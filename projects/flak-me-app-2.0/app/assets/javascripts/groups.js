@@ -14,7 +14,7 @@ $(document).on('turbolinks:load', function() {
 function submitNewMessage(){
   $('textarea#message_body').keydown(function(event) {
     if (event.keyCode == 13) {
-        $('input[type=submit]').click();
+        $('input[type=submit]').submit();
         $('#message_body').val(" ")
         return false;
      }
@@ -27,7 +27,7 @@ function submitNewFlash(){
       $(this).closest('form').submit();
       $('#flash_body').val('');
         // $('input[type=submit]').click();
-        // return false;
+      return false;
      }
   });
 }

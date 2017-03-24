@@ -9,6 +9,7 @@ jQuery(document).on 'turbolinks:load', ->
         channel: "GroupsChannel"
         group_id: messages.data('group-id')
       },
+
       connected: ->
         # Called when the subscription is ready for use on the server
 
@@ -24,10 +25,10 @@ jQuery(document).on 'turbolinks:load', ->
 
 
     $('#new_message').submit (e) ->
+      e.preventDefault()
       $this = $(this)
       textarea = $this.find('#message_body')
       if $.trim(textarea.val()).length > 1
         App.global_group.send_message textarea.val(), messages.data('group-id')
         textarea.val('')
-      e.preventDefault()
       return false

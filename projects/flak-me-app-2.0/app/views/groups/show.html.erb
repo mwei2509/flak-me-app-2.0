@@ -105,7 +105,7 @@
         </div>
 
         <!-- chat form -->
-        <%= form_for @message, url: '#' do |f| %>
+        <%= form_for @message, remote: true, url: '#' do |f| %>
           <%= hidden_field_tag 'group_id', @group.id %>
           <div class="form-group">
             <%= f.label :body %>
