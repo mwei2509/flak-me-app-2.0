@@ -1,5 +1,5 @@
 
-  <div style="float:left;width:200px; height:150px !important;background-image: url(<%= group_hors.group_img.url %>); background-color:white;margin:15px;">
+  <div id="notifications" data-group-id="<%= group_hors.id %>" style="float:left;width:200px; height:150px !important;background-image: url(<%= group_hors.group_img.url %>); background-color:white;margin:15px;">
    <% #image_tag group.group_img.url %>
     <%= link_to "Enter #{group_hors.title}", group_path(group_hors) %>
   </div>
