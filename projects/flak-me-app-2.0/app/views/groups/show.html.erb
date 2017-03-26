@@ -1,6 +1,6 @@
 <div class="slide-groups" style="overflow-x:scroll;width:100%;">
   <div style="background-color:black;position:relative;overflow-x:scroll;width:<%= current_user.get_groups.count*230%>px;white-space:nowrap;">
-      <%= render partial: 'groups/group_hors', collection: current_user.get_groups %>
+      <%= render partial: 'groups/group_hors', collection: current_user.get_groups.where.not(id: @group.id) %>
   </div>
 </div>
 

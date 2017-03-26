@@ -1,24 +1,11 @@
 <script>
 console.log("yo")
-if (document.title.includes("(")){
-
-}else{
-  count = 0;
-}
-
-var title="Flak.me"
-// var title = document.title;
-function changeTitle() {
-    count++;
-    var newTitle = '(' + count +') ' + title;
-    document.title = newTitle;
-}
-
-if (document.hidden){
-  changeTitle();
-}
-$(window).focus(function(){
-  document.title=title
+$.notify({
+	// options
+	message: '<%= Group.find(groupid).title %>: <%= message.body %>',
+  url: '<%= group_path(Group.find(groupid)) %>'
+},{
+	// settings
+	type: 'danger'
 });
-
 </script>
