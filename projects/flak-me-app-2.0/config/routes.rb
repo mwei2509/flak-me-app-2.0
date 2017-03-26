@@ -16,7 +16,11 @@ Rails.application.routes.draw do
   resources :slides, param: :slidee, only: [:index, :create, :show], as: "slide_on_in"
   get '/flashes/:slidee', to: 'slides#flash', as: 'flash_me'
   post '/flashes', to: 'slides#sendflash', as: 'flash'
-  resources :profiles, param: :user_id, only: [:show, :edit, :update]
+  resources :profiles, param: :user_id, only: [:show, :edit, :update] do
+    collection do
+     get 'autocomplete'
+    end
+  end
 
   mount ActionCable.server => '/cable'
   get '/dashboard', to: 'profiles#dashboard'

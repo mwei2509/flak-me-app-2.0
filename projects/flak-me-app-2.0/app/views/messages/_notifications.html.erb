@@ -2,7 +2,7 @@
 console.log("yo")
 $.notify({
 	// options
-	message: '<%= Group.find(groupid).title %>: <%= message.body %>',
+	message: '<%= Group.find(groupid).title %>:<br /><%= User.find(userid).user_name %> says <%= message.body %>',
   url: '<%= group_path(Group.find(groupid)) %>'
 },{
 	// settings

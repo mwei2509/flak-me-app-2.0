@@ -1,0 +1,1 @@
+@found.map(&:user_name).to_json

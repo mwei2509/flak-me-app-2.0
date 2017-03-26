@@ -8,9 +8,9 @@ class Group < ApplicationRecord
   has_attached_file :image
   validates :title, presence: true, uniqueness: true, case_sensitive: false, length:{in: 3..30}
   validates :title, format: { without: /\A[@]/, message: "reserved character" }, if: "!private" #no @ if not a DM
-  
+
   has_attached_file :group_img, styles: { medium: "300x300>", thumb: "100x100>" }, default_url: "ghost.png"
-  validates_attachment_content_type :group_img, content_type: /\Aimage\/.*\z/ 
+  validates_attachment_content_type :group_img, content_type: /\Aimage\/.*\z/
 
   before_validation :sanitize, :slugify
 
@@ -48,6 +48,10 @@ class Group < ApplicationRecord
 
   def get_members
     self.users.where("roles.role_type='member'")
+  end
+
+  def get_all_peeps
+    self.users.where("roles.role_type='admin' OR roles.role_type='member'")
   end
 
   def get_banned

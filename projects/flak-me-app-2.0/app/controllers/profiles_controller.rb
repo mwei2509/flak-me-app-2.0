@@ -19,6 +19,19 @@ class ProfilesController < ApplicationController
     end
   end
 
+  def autocomplete
+    if params[:term]
+      searchterm=params[:term].downcase
+    end
+    @users=Profile.where("LOWER(user_name) LIKE ?", "%#{searchterm}%")
+    respond_to do |format|
+      format.html
+      format.json {
+        render json: @users.map(&:user_name).to_json
+      }
+    end
+  end
+
   private
 
   def set_profile

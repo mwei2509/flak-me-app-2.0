@@ -1,5 +1,5 @@
 class GroupsController < ApplicationController
-  before_action :set_group, only:[:edit, :show, :destroy, :modify]
+  before_action :set_group, only:[:edit, :show, :destroy, :modify, :autocomplete]
   before_action :set_groups
 
   def index
