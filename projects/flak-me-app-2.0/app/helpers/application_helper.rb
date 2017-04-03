@@ -14,7 +14,7 @@ module ApplicationHelper
       'timelapse4.mp4']
     i=Random.new
     video_output=<<-HTML
-      <source src="../#{videos[rand(0..4)]}" type="video/mp4">
+      <source src="../#{videos[i.rand(0..4)]}" type="video/mp4">
     HTML
     video_output.html_safe
   end
